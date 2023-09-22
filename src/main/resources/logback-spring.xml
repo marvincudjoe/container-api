@@ -1,0 +1,20 @@
+<!--https://docs.spring.io/spring-boot/docs/3.1.4/reference/htmlsingle/#features.logging.custom-log-configuration-->
+<!--https://logback.qos.ch/manual/appenders.html-->
+<configuration>
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
+    <conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter" />
+    <conversionRule conversionWord="wEx" converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter" />
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+        <pattern>
+            <!--https://github.com/spring-projects/spring-boot/blob/HEAD/spring-boot-project/spring-boot/src/main/resources/org/springframework/boot/logging/logback/defaults.xml-->
+            %clr(%d{yyyy-MM-dd HH:mm:ss.SSSXXX}){faint} %clr(%5p) %clr(---){faint} %clr([%t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wEx
+        </pattern>
+    </encoder>
+</appender>
+
+<root level="INFO">
+    <appender-ref ref="STDOUT"/>
+</root>
+</configuration>

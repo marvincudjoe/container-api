@@ -35,6 +35,10 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web:${Versions.SPRING_VERSION}")
     // https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.devtools
     developmentOnly("org.springframework.boot:spring-boot-devtools:${Versions.SPRING_VERSION}")
+
+    implementation("org.slf4j:slf4j-api:2.0.9")
+    implementation("ch.qos.logback:logback-classic:1.4.11")
+
     implementation("com.github.docker-java:docker-java:${Versions.DOCKER_JAVA_VERSION}")
     implementation("com.github.docker-java:docker-java-transport-httpclient5:${Versions.DOCKER_JAVA_VERSION}")
     testImplementation("org.springframework.boot:spring-boot-starter-test:${Versions.SPRING_VERSION}")
