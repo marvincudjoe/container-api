@@ -26,11 +26,14 @@ object Versions {
     const val DOCKER_JAVA_VERSION = "3.3.3"
     const val UNIREST_VERSION = "3.14.2"
     const val SPRING_VERSION = "3.1.4"
+    const val SPRING_DOC_VERSION = "2.2.0"
 }
 
 dependencies {
     // This dependency is used by the application.
     implementation("com.google.guava:guava:31.1-jre")
+
+    implementation("org.springdoc:springdoc-openapi-starter-common:${Versions.SPRING_DOC_VERSION}")
 
     implementation("org.springframework.boot:spring-boot-starter-web:${Versions.SPRING_VERSION}")
     // https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.devtools
