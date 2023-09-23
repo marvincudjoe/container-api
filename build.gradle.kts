@@ -33,6 +33,7 @@ dependencies {
     // This dependency is used by the application.
     implementation("com.google.guava:guava:31.1-jre")
 
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:${Versions.SPRING_DOC_VERSION}")
     implementation("org.springdoc:springdoc-openapi-starter-common:${Versions.SPRING_DOC_VERSION}")
 
     implementation("org.springframework.boot:spring-boot-starter-web:${Versions.SPRING_VERSION}")
@@ -44,6 +45,8 @@ dependencies {
 
     implementation("com.github.docker-java:docker-java:${Versions.DOCKER_JAVA_VERSION}")
     implementation("com.github.docker-java:docker-java-transport-httpclient5:${Versions.DOCKER_JAVA_VERSION}")
+    implementation("org.apache.httpcomponents.client5:httpclient5:5.2.1")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test:${Versions.SPRING_VERSION}")
 }
 
