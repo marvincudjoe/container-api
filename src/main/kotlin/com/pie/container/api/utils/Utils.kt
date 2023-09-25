@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory
 import java.io.InputStream
 
 fun setGetRequest(path: String): DockerHttpClient.Request {
-    return DockerHttpClient.Request.builder().method(DockerHttpClient.Request.Method.GET).path(path).build()
+    return DockerHttpClient.Request.builder().method(DockerHttpClient.Request.Method.GET).path("/$path").build()
 }
 
 fun InputStream.readMessage() = (this.bufferedReader().use { it.readText() })
