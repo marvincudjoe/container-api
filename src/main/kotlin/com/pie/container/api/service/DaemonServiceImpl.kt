@@ -4,8 +4,10 @@ import com.github.dockerjava.core.DefaultDockerClientConfig
 import com.github.dockerjava.core.DockerClientConfig
 import com.github.dockerjava.httpclient5.ApacheDockerHttpClient
 import com.github.dockerjava.transport.DockerHttpClient
-import com.pie.container.api.RequestException
+import com.pie.container.api.model.DefaultResponse
 import com.pie.container.api.utils.logger
+import com.pie.container.api.utils.readMessage
+import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 
 @Service
@@ -21,21 +23,23 @@ class DaemonServiceImpl {
             .build()
     }
 
-    fun sendRequest(req: DockerHttpClient.Request): DockerHttpClient.Response {
+    fun sendRequest(req: DockerHttpClient.Request): DefaultResponse {
         logger.info("Request: ${req.method()} ${req.path()}")
-        return runCatching {
+        var response = DefaultResponse()
+        runCatching {
             // todo: add timeout
-            httpClient.execute(req)
-        }.onSuccess {
-            return it.apply {
-                logger.info ("Response: is $statusCode")
+            httpClient.execute(req).apply {
+                response = DefaultResponse(HttpStatus.valueOf(statusCode), body.readMessage())
             }
-        }.onFailure { e ->
-            if (e is RuntimeException) {
-                throw RequestException("Docker may not be daemon available: ${e.message}")
+        }.onFailure { ex ->
+            response = if (ex is RuntimeException) {
+                logger.error("Caught ${ex.javaClass}: ${ex.stackTrace}")
+                DefaultResponse(HttpStatus.INTERNAL_SERVER_ERROR, "Docker may not be daemon available: ${ex.message}")
             } else {
-                throw RequestException("Failed to send request. \n${e.message}, $e")
+                logger.error("Caught ${ex.javaClass}: ${ex.stackTrace}")
+                DefaultResponse(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to send request. \n${ex.message}")
             }
-        }.getOrThrow()
+        }
+        return response
     }
 }
