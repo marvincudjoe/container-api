@@ -1,6 +1,5 @@
 package com.pie.container.api.controllers
 
-import com.pie.container.api.service.SystemService
 import com.pie.container.api.service.SystemServiceImpl
 import io.swagger.v3.oas.annotations.Hidden
 import org.springframework.web.bind.annotation.GetMapping
