@@ -1,7 +1,8 @@
 package com.pie.container.api.controllers
 
+import com.pie.container.api.model.response
 import com.pie.container.api.service.SystemServiceImpl
-import io.swagger.v3.oas.annotations.Hidden
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
@@ -19,15 +20,9 @@ class SystemController {
     }
 
     @GetMapping("version")
-    fun daemonVersion() {
-        systemService.version()
+    fun daemonVersion(): ResponseEntity<String> {
+        return response {
+            systemService.version()
+        }
     }
-}
-
-@Hidden
-@RestController
-@RequestMapping("/")
-class RootController {
-    @GetMapping
-    fun welcome(): String = "Welcome to container-api"
 }
