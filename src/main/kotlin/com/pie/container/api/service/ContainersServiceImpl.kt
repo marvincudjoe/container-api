@@ -2,7 +2,9 @@ package com.pie.container.api.service
 
 import com.pie.container.api.model.DefaultResponse
 import com.pie.container.api.utils.setGetRequest
+import org.springframework.stereotype.Service
 
+@Service
 class ContainersServiceImpl : ContainersService {
     private var daemonService = DaemonServiceImpl()
     override fun listContainers(
