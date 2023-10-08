@@ -13,14 +13,12 @@ web app with a collection of API endpoints for managing Docker containers.
 This project uses [Gradle](https://gradle.org/) as the build tool. To run the application, execute
 the following command:
 
-On Linux: execute the following command:
-
+On Linux:
 ```shell
 ./gradlew bootRun
 ```
 
-On Windows, use the following command:
-
+On Windows:
 ```shell
 gradlew.bat bootRun
 ```
@@ -38,7 +36,7 @@ curl -v --unix-socket /var/run/docker.sock "http://localhost/v1.43/_ping"
 ```
 
 This project replicates the [Docker API reference](https://docs.docker.com/engine/api/latest/) using
-an unofficial SDK, [docker-java](https://github.com/docker-java/docker-java)
+an unofficial SDK, [docker-java](https://github.com/docker-java/docker-java).
 
 ### Purpose
 
