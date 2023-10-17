@@ -2,6 +2,7 @@ package com.pie.container.api.service
 
 import com.pie.container.api.model.DefaultResponse
 import com.pie.container.api.utils.setGetRequest
+import com.pie.container.api.utils.setPostRequest
 import org.springframework.stereotype.Service
 
 @Service
@@ -16,5 +17,9 @@ class ContainersServiceImpl : ContainersService {
         return daemonService.sendRequest(
             setGetRequest("containers/json?all=$all&limit=$limit&size=$size&filters=$filters")
         )
+    }
+
+    override fun stopContainer(id: String): DefaultResponse {
+        return daemonService.sendRequest(setPostRequest("containers/$id/stop"))
     }
 }

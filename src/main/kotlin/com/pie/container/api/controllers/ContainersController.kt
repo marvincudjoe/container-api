@@ -2,14 +2,9 @@ package com.pie.container.api.controllers
 
 import com.pie.container.api.model.endpointNotImplemented
 import com.pie.container.api.model.response
-import com.pie.container.api.service.ContainersService
 import com.pie.container.api.service.ContainersServiceImpl
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("containers")
@@ -41,9 +36,10 @@ class ContainersController {
     }
 
     @PostMapping("{id}/stop")
-    fun stopContainer(): ResponseEntity<String> {
-        // todo: implement
-        return endpointNotImplemented
+    fun stopContainer(@PathVariable id: String): ResponseEntity<String> {
+        return response {
+            containersService.stopContainer(id)
+        }
     }
 
     @PostMapping("{id}/restart")

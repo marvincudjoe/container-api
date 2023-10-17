@@ -9,6 +9,11 @@ fun setGetRequest(path: String): DockerHttpClient.Request {
     return DockerHttpClient.Request.builder().method(DockerHttpClient.Request.Method.GET).path("/$path").build()
 }
 
+fun setPostRequest(path: String): DockerHttpClient.Request {
+    return DockerHttpClient.Request.builder().method(DockerHttpClient.Request.Method.POST)
+        .path("/$path").build()
+}
+
 fun InputStream.readMessage() = (this.bufferedReader().use { it.readText() })
 
 inline val <reified T> T.logger: Logger
