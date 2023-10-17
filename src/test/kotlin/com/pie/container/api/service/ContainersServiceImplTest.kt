@@ -2,6 +2,7 @@ package com.pie.container.api.service
 
 import com.github.dockerjava.transport.DockerHttpClient
 import com.pie.container.api.model.DefaultResponse
+import com.pie.container.api.utils.DockerEngineApiReferences
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -21,10 +22,16 @@ class ContainersServiceImplTest {
 
     @Test
     fun listContainers() {
-        Mockito.`when`(daemonServiceImpl.sendRequest(setGetRequest(setPath(true, 10, true, ""))))
-            .thenReturn(DefaultResponse(HttpStatus.ACCEPTED, "[]"))
+        Mockito.`when`(
+            daemonServiceImpl.sendRequest(
+                setGetRequest(setPath(true, 10, true, "")),
+                DockerEngineApiReferences.Containers.LIST
+            )
+        )
+            .thenReturn(DefaultResponse(HttpStatus.ACCEPTED, body = "[]"))
+
         val result = containersService.listContainers(true, 10, true, "")
-        val expectedResponse = DefaultResponse(HttpStatus.ACCEPTED, "[]")
+        val expectedResponse = DefaultResponse(HttpStatus.ACCEPTED, body = "[]")
         assertEquals(expectedResponse, result)
     }
 

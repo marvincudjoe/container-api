@@ -1,7 +1,6 @@
 # Container API
 
-[RESTful](https://en.wikipedia.org/wiki/REST)
-web app with a collection of API endpoints for managing Docker containers.
+[RESTful](https://en.wikipedia.org/wiki/REST) web app with a collection of API endpoints for managing Docker containers.
 
 ## Pre-requisites
 
@@ -10,8 +9,8 @@ web app with a collection of API endpoints for managing Docker containers.
 
 ## Running the application
 
-This project uses [Gradle](https://gradle.org/) as the build tool. To run the application, execute
-the following command:
+This project uses [Gradle](https://gradle.org/) as the build tool. 
+To run the application, execute one of the following commands:
 
 On Linux:
 ```shell
@@ -30,8 +29,8 @@ docker build --no-cache --tag container-api . &&  docker run --rm -d --publish 8
 
 ## Notes:
 
-Docker provides an API for interacting with the Docker Daemon, called
-the [Docker Engine API](https://docs.docker.com/engine/api/).
+Docker provides an API for interacting with the Docker Daemon, 
+called the [Docker Engine API](https://docs.docker.com/engine/api/).
 The Docker Engine API is a RESTful API accessed by an HTTP client such as curl.
 
 Example call on Linux:
@@ -40,15 +39,15 @@ Example call on Linux:
 curl -v --unix-socket /var/run/docker.sock "http://localhost/v1.43/_ping"
 ```
 
-This project replicates the [Docker API reference](https://docs.docker.com/engine/api/latest/) using
-an unofficial SDK, [docker-java](https://github.com/docker-java/docker-java).
+This project replicates the [Docker API reference](https://docs.docker.com/engine/api/latest/) 
+using an unofficial SDK, [docker-java](https://github.com/docker-java/docker-java).
 
 ### Purpose
 
 This project is intended to be a learning experience for Kotlin, Spring Boot, and Docker.
-The goal is to create a collection of API endpoints that aid in managing containers.
+The goal is to create a collection of API endpoints that interact with the Docker Engine.
 
-This is a work in progress. I *may* add updates as I learn more about Spring Boot and Kotlin.
+This is a work in progress. I *may* add updates as I progress in my study.
 
 ### Limitations
 
