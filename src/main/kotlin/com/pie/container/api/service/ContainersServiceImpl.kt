@@ -19,7 +19,7 @@ class ContainersServiceImpl : ContainersService {
         )
     }
 
-    override fun stopContainer(id: String): DefaultResponse {
-        return daemonService.sendRequest(setPostRequest("containers/$id/stop"))
+    override fun stopContainer(id: String, signal: String, t: Int): DefaultResponse {
+        return daemonService.sendRequest(setPostRequest("containers/$id/stop?signal=$signal&t=$t"))
     }
 }

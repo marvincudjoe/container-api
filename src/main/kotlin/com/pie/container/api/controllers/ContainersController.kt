@@ -3,6 +3,7 @@ package com.pie.container.api.controllers
 import com.pie.container.api.model.endpointNotImplemented
 import com.pie.container.api.model.response
 import com.pie.container.api.service.ContainersServiceImpl
+import io.swagger.v3.oas.annotations.Parameter
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
@@ -35,10 +36,18 @@ class ContainersController {
         return endpointNotImplemented
     }
 
+    /**
+     * @see <a href="https://docs.docker.com/engine/api/v1.43/#tag/Container/operation/ContainerStopp">Stop a container</a>
+     * @see <a href="https://docs.docker.com/engine/reference/commandline/kill/#send-a-kill-signal-to-a-container">docker kill</a>
+     */
     @PostMapping("{id}/stop")
-    fun stopContainer(@PathVariable id: String): ResponseEntity<String> {
+    fun stopContainer(@PathVariable id: String,
+                      @Parameter(description = "Signal to send to the container as an integer or string (e.g. SIGINT).")
+                      @RequestParam(required = false, defaultValue = "SIGKILL") signal: String,
+                      @Parameter(description = "Number of seconds to wait before killing the container.")
+                      @RequestParam(required = false, defaultValue = "0") t: Int): ResponseEntity<String> {
         return response {
-            containersService.stopContainer(id)
+            containersService.stopContainer(id, signal, t)
         }
     }
 
