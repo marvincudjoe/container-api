@@ -34,7 +34,7 @@ class DaemonServiceImpl {
         }.onFailure { ex ->
             response = if (ex is RuntimeException) {
                 logger.error("Caught ${ex.javaClass}: ${ex.stackTrace}")
-                DefaultResponse(HttpStatus.INTERNAL_SERVER_ERROR, "Docker may not be daemon available: ${ex.message}")
+                DefaultResponse(HttpStatus.INTERNAL_SERVER_ERROR, "Docker daemon may not be available: ${ex.message}")
             } else {
                 logger.error("Caught ${ex.javaClass}: ${ex.stackTrace}")
                 DefaultResponse(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to send request. \n${ex.message}")
