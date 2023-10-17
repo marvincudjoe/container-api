@@ -23,6 +23,11 @@ On Windows:
 gradlew.bat bootRun
 ```
 
+Docker:
+```shell
+docker build --no-cache --tag container-api . &&  docker run --rm -d --publish 8080:8080 --name container-api container-api
+```
+
 ## Notes:
 
 Docker provides an API for interacting with the Docker Daemon, called
