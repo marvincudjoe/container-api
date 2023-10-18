@@ -1,6 +1,5 @@
 package com.pie.container.api.model
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import java.net.URI
@@ -16,5 +15,5 @@ inline fun response(block: () -> DefaultResponse): ResponseEntity<DefaultRespons
 data class DefaultResponse(
     val status: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR,
     val reference: URI = URI(""),
-    val body: Any = ObjectMapper().readTree("")
+    val body: Any = ""
 )

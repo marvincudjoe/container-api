@@ -4,6 +4,6 @@ import com.pie.container.api.model.DefaultResponse
 
 interface ContainersService {
     fun listContainers(all: Boolean, limit: Int, size: Boolean, filters: String): DefaultResponse
-
     fun stopContainer(id: String, signal: String, t: Int): DefaultResponse
+    fun startContainer(id: String, detachKeys: String): DefaultResponse
 }

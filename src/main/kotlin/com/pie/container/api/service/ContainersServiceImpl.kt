@@ -30,4 +30,18 @@ class ContainersServiceImpl : ContainersService {
             DockerEngineApiReferences.Containers.STOP
         )
     }
+
+    override fun startContainer(id: String, detachKeys: String): DefaultResponse {
+        return if (detachKeys.isEmpty()) {
+            daemonService.sendRequest(
+                setPostRequest("containers/$id/start"),
+                DockerEngineApiReferences.Containers.START
+            )
+        } else {
+            daemonService.sendRequest(
+                setPostRequest("containers/$id/start?detachKeys=$detachKeys"),
+                DockerEngineApiReferences.Containers.START
+            )
+        }
+    }
 }

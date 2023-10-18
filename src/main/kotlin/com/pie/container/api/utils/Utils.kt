@@ -17,9 +17,9 @@ fun setPostRequest(path: String): DockerHttpClient.Request {
         .path("/$path").build()
 }
 
-private fun InputStream.readMessage() = (this.bufferedReader().use { it.readText() })
+private fun InputStream.toText() = (this.bufferedReader().use { it.readText() })
 
-fun InputStream.toJson(): JsonNode = ObjectMapper().readTree(readMessage())
+fun InputStream.toJson(): JsonNode = ObjectMapper().readTree(toText())
 
 inline val <reified T> T.logger: Logger
     get() = LoggerFactory.getLogger(T::class.java)

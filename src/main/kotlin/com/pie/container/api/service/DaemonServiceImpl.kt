@@ -29,10 +29,10 @@ class DaemonServiceImpl {
         runCatching {
             // todo: add timeout
             httpClient.execute(req).apply {
-                if (HttpStatus.valueOf(this.statusCode).isError) {
-                    logger.error("Failed request to ${req.path()}")
-                }
                 response = handelResponseStatus(this, URI(reference))
+                if (response.status.isError) {
+                    logger.error("Failed request: ${req.method()} ${req.path()}. Reason: ${response.body}")
+                }
             }
         }.onFailure { ex ->
             response = if (ex is RuntimeException) {
