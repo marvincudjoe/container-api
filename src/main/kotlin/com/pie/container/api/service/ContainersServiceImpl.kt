@@ -24,13 +24,6 @@ class ContainersServiceImpl : ContainersService {
         )
     }
 
-    override fun stopContainer(id: String, signal: String, t: Int): DefaultResponse {
-        return daemonService.sendRequest(
-            setPostRequest("containers/$id/stop?signal=$signal&t=$t"),
-            DockerEngineApiReferences.Containers.STOP
-        )
-    }
-
     override fun startContainer(id: String, detachKeys: String): DefaultResponse {
         return if (detachKeys.isEmpty()) {
             daemonService.sendRequest(
@@ -43,5 +36,19 @@ class ContainersServiceImpl : ContainersService {
                 DockerEngineApiReferences.Containers.START
             )
         }
+    }
+
+    override fun stopContainer(id: String, signal: String, t: Int): DefaultResponse {
+        return daemonService.sendRequest(
+            setPostRequest("containers/$id/stop?signal=$signal&t=$t"),
+            DockerEngineApiReferences.Containers.STOP
+        )
+    }
+
+    override fun restartContainer(id: String, signal: String, t: Int): DefaultResponse {
+        return daemonService.sendRequest(
+            setPostRequest("containers/$id/restart?signal=$signal&t=$t"),
+            DockerEngineApiReferences.Containers.RESTART
+        )
     }
 }

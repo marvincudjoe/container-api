@@ -30,7 +30,6 @@ class ContainersController(private val containersService: ContainersService) {
 
     @PostMapping("create")
     fun createContainer(): ResponseEntity<String> {
-        // todo: implement
         return endpointNotImplemented
     }
 
@@ -41,23 +40,32 @@ class ContainersController(private val containersService: ContainersService) {
     fun startContainer(
         @Parameter(description = "Name or Hash of the container to start.")
         @PathVariable id: String,
-        @Parameter(description = "Override the key sequence for detaching a container. ", hidden = true)
+        @Parameter(
+            description = "Override the key sequence for detaching a container. ",
+            hidden = true
+        )
         @RequestParam(required = false, defaultValue = "") detachKeys: String
-    ): ResponseEntity<DefaultResponse> = response { containersService.startContainer(id, detachKeys) }
+    ): ResponseEntity<DefaultResponse> =
+        response { containersService.startContainer(id, detachKeys) }
 
     @PostMapping("{id}/stop")
     fun stopContainer(
         @Parameter(description = "Name or Hash of the container to stop.")
         @PathVariable id: String,
-        @Parameter(description = "Signal to send to the container as an integer or string (e.g. SIGINT).")
-        @RequestParam(required = false, defaultValue = "SIGKILL") signal: String,
+        @Parameter(description = "Signal to send to the container as an integer or string.")
+        @RequestParam(required = false, defaultValue = "SIGTERM") signal: String,
         @Parameter(description = "Number of seconds to wait before killing the container.")
         @RequestParam(required = false, defaultValue = "0") t: Int
     ): ResponseEntity<DefaultResponse> = response { containersService.stopContainer(id, signal, t) }
 
     @PostMapping("{id}/restart")
-    fun restartContainer(): ResponseEntity<String> {
-        // todo: implement
-        return endpointNotImplemented
-    }
+    fun restartContainer(
+        @Parameter(description = "Name or Hash of the container to stop.")
+        @PathVariable id: String,
+        @Parameter(description = "Signal to send to the container as an integer or string.")
+        @RequestParam(required = false, defaultValue = "SIGTERM") signal: String,
+        @Parameter(description = "Number of seconds to wait before killing the container.")
+        @RequestParam(required = false, defaultValue = "0") t: Int
+    ): ResponseEntity<DefaultResponse> =
+        response { containersService.restartContainer(id, signal, t) }
 }

@@ -10,7 +10,9 @@ class DockerEngineApiReferences {
         const val LIST = "$DOCKER_API_REF/#tag/operation/ContainerList"
         const val START = "$DOCKER_API_REF/#tag/operation/ContainerStart"
         const val STOP = "$DOCKER_API_REF/#tag/operation/ContainerStop"
+        const val RESTART = "$DOCKER_API_REF/#tag/operation/ContainerRestart"
     }
+
     /**
      * See [System](https://docs.docker.com/engine/api/v1.43/#tag/System)
      */
