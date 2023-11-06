@@ -15,6 +15,14 @@ class DockerEngineApiReferences {
     }
 
     /**
+     * See [Networks](https://docs.docker.com/engine/api/v1.43/#tag/Network/operation/NetworkList)
+     */
+    object Networks {
+        const val NETWORK_LIST = "$DOCKER_API_REF/#tag/operation/NetworkList"
+        const val NETWORK_INSPECT = "$DOCKER_API_REF/#tag/operation/NetworkInspect"
+    }
+
+    /**
      * See [System](https://docs.docker.com/engine/api/v1.43/#tag/System)
      */
     object System {
