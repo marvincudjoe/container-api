@@ -4,6 +4,7 @@ import com.pie.container.api.model.DefaultResponse
 import com.pie.container.api.model.endpointNotImplemented
 import com.pie.container.api.model.response
 import com.pie.container.api.service.ContainersService
+import io.swagger.v3.oas.annotations.Hidden
 import io.swagger.v3.oas.annotations.Parameter
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -28,6 +29,7 @@ class ContainersController(private val containersService: ContainersService) {
     ): ResponseEntity<DefaultResponse> =
         response { containersService.listContainers(all, limit, size, filters) }
 
+    @Hidden
     @PostMapping("create")
     fun createContainer(): ResponseEntity<String> {
         return endpointNotImplemented
@@ -68,4 +70,11 @@ class ContainersController(private val containersService: ContainersService) {
         @RequestParam(required = false, defaultValue = "0") t: Int
     ): ResponseEntity<DefaultResponse> =
         response { containersService.restartContainer(id, signal, t) }
+
+    @PostMapping("prune")
+    fun deleteStoppedContainers(
+        @Parameter(description = "Filters to process on the prune list, encoded as JSON (a map[string][]string).")
+        @RequestParam(required = false, defaultValue = "") filters: String
+    ): ResponseEntity<DefaultResponse> =
+        response { containersService.deleteStoppedContainers(filters) }
 }

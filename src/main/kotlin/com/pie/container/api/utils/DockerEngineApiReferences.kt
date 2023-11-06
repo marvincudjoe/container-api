@@ -11,6 +11,7 @@ class DockerEngineApiReferences {
         const val START = "$DOCKER_API_REF/#tag/operation/ContainerStart"
         const val STOP = "$DOCKER_API_REF/#tag/operation/ContainerStop"
         const val RESTART = "$DOCKER_API_REF/#tag/operation/ContainerRestart"
+        const val CONTAINER_PRUNE = "$DOCKER_API_REF/#tag/operation/ContainerPrune"
     }
 
     /**

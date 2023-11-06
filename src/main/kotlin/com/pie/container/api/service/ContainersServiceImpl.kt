@@ -51,4 +51,11 @@ class ContainersServiceImpl : ContainersService {
             DockerEngineApiReferences.Containers.RESTART
         )
     }
+
+    override fun deleteStoppedContainers(filters: String): DefaultResponse {
+        return daemonService.sendRequest(
+            setPostRequest("containers/prune$filters"),
+            DockerEngineApiReferences.Containers.CONTAINER_PRUNE
+        )
+    }
 }

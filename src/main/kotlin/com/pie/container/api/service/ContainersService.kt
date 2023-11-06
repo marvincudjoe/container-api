@@ -7,4 +7,6 @@ interface ContainersService {
     fun stopContainer(id: String, signal: String, t: Int): DefaultResponse
     fun startContainer(id: String, detachKeys: String): DefaultResponse
     fun restartContainer(id: String, signal: String, t: Int): DefaultResponse
+    fun deleteStoppedContainers(filters: String): DefaultResponse
+
 }
