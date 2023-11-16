@@ -24,6 +24,13 @@ class ContainersServiceImpl : ContainersService {
         )
     }
 
+    override fun inspectContainer(id: String, size: Boolean): DefaultResponse {
+        return daemonService.sendRequest(
+            setGetRequest("containers/$id/json?size=$size"),
+            DockerEngineApiReferences.Containers.INSPECT
+        )
+    }
+
     override fun startContainer(id: String, detachKeys: String): DefaultResponse {
         return if (detachKeys.isEmpty()) {
             daemonService.sendRequest(

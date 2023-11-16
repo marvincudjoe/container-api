@@ -1,5 +1,6 @@
 package com.pie.container.api.service
 
+import com.fasterxml.jackson.databind.JsonNode
 import com.github.dockerjava.core.DefaultDockerClientConfig
 import com.github.dockerjava.core.DockerClientConfig
 import com.github.dockerjava.httpclient5.ApacheDockerHttpClient
@@ -54,7 +55,11 @@ class DaemonServiceImpl {
 
     fun handelResponseStatus(response: Response, dockerApiReference: URI): DefaultResponse {
         val status = HttpStatus.valueOf(response.statusCode)
-        val body = response.body.toJson()
+        val body = try {
+            response.body.toJson()
+        } catch (ex: Exception) {
+            ""
+        }
         return DefaultResponse(status, dockerApiReference, body)
     }
 }

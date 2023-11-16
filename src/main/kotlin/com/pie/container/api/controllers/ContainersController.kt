@@ -35,6 +35,14 @@ class ContainersController(private val containersService: ContainersService) {
         return endpointNotImplemented
     }
 
+    @GetMapping("{id}/json")
+    fun inspectContainer(
+        @Parameter(description = "Name or Hash of the container to inspect.")
+        @PathVariable id: String,
+        @Parameter(description = "Return the size of container as fields SizeRw and SizeRootFs.")
+        @RequestParam(required = false, defaultValue = "false") size: Boolean
+    ): ResponseEntity<DefaultResponse> = response { containersService.inspectContainer(id, size) }
+
     /**
      * See [Attach](https://docs.docker.com/engine/reference/commandline/attach/#detach-keys)
      */
