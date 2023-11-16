@@ -41,6 +41,8 @@ dependencies {
     // https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.devtools
     developmentOnly("org.springframework.boot:spring-boot-devtools:${Versions.SPRING_VERSION}")
 
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+
     implementation("org.slf4j:slf4j-api:2.0.9")
     implementation("ch.qos.logback:logback-classic:1.4.11")
 

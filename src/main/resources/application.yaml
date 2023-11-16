@@ -1,0 +1,6 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        # https://docs.spring.io/spring-boot/docs/3.1.5/actuator-api/htmlsingle/#overview
+        include: health,metrics
