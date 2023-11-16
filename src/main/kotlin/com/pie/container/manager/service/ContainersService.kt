@@ -1,6 +1,6 @@
-package com.pie.container.api.service
+package com.pie.container.manager.service
 
-import com.pie.container.api.model.DefaultResponse
+import com.pie.container.manager.model.DefaultResponse
 
 interface ContainersService {
     fun listContainers(all: Boolean, limit: Int, size: Boolean, filters: String): DefaultResponse

@@ -1,8 +1,8 @@
-package com.pie.container.api.controllers
+package com.pie.container.manager.controllers
 
-import com.pie.container.api.model.DefaultResponse
-import com.pie.container.api.model.response
-import com.pie.container.api.service.NetworksService
+import com.pie.container.manager.model.DefaultResponse
+import com.pie.container.manager.model.response
+import com.pie.container.manager.service.NetworksService
 import io.swagger.v3.oas.annotations.Parameter
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*

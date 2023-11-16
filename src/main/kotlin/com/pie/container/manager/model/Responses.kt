@@ -1,4 +1,4 @@
-package com.pie.container.api.model
+package com.pie.container.manager.model
 
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity

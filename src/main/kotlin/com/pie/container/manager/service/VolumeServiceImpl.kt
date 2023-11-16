@@ -1,8 +1,8 @@
-package com.pie.container.api.service
+package com.pie.container.manager.service
 
-import com.pie.container.api.model.DefaultResponse
-import com.pie.container.api.utils.DockerEngineApiReferences
-import com.pie.container.api.utils.setGetRequest
+import com.pie.container.manager.model.DefaultResponse
+import com.pie.container.manager.utils.DockerEngineApiReferences
+import com.pie.container.manager.utils.setGetRequest
 import org.springframework.stereotype.Service
 
 @Service

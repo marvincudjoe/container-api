@@ -1,4 +1,4 @@
-package com.pie.container.api.config
+package com.pie.container.manager.config
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info
 import org.springframework.context.annotation.Bean
@@ -13,7 +13,7 @@ class OpenApiConfiguration {
     fun openApi() : OpenAPI = OpenAPI()
         .info(
             Info()
-                .title("container-api")
+                .title("container-manager")
                 .description("Endpoints to manage containers")
                 .version("0.0.1")
         )

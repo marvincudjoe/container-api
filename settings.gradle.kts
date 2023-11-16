@@ -1,2 +1,2 @@
-rootProject.name = "container-api"
+rootProject.name = "container-manager"
 

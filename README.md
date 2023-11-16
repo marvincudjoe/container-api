@@ -1,4 +1,4 @@
-# Container API
+# Container Manager
 
 [RESTful](https://en.wikipedia.org/wiki/REST) web application with a collection of API endpoints for managing Docker containers.
 
@@ -23,7 +23,7 @@ gradlew.bat bootRun
 As a Docker container (currently requires the jar to be pre-built):
 ```shell
 ```shell
-docker build --no-cache --tag container-api . &&  docker run --rm -d --publish 8080:8080 --name container-api container-api
+docker build --no-cache --tag container-manager . &&  docker run --rm -d --publish 8080:8080 --name container-manager container-manager
 ```
 
 ## Notes:

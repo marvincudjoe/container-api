@@ -1,8 +1,8 @@
-package com.pie.container.api.service
+package com.pie.container.manager.service
 
 import com.github.dockerjava.transport.DockerHttpClient
-import com.pie.container.api.model.DefaultResponse
-import com.pie.container.api.utils.DockerEngineApiReferences
+import com.pie.container.manager.model.DefaultResponse
+import com.pie.container.manager.utils.DockerEngineApiReferences
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith

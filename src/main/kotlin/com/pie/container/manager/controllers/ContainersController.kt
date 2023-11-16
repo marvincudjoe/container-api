@@ -1,16 +1,16 @@
-package com.pie.container.api.controllers
+package com.pie.container.manager.controllers
 
-import com.pie.container.api.model.DefaultResponse
-import com.pie.container.api.model.endpointNotImplemented
-import com.pie.container.api.model.response
-import com.pie.container.api.service.ContainersService
+import com.pie.container.manager.model.DefaultResponse
+import com.pie.container.manager.model.endpointNotImplemented
+import com.pie.container.manager.model.response
+import com.pie.container.manager.service.ContainersService
 import io.swagger.v3.oas.annotations.Hidden
 import io.swagger.v3.oas.annotations.Parameter
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 /**
- * @see [com.pie.container.api.utils.DockerEngineApiReferences.Containers]
+ * @see [com.pie.container.manager.utils.DockerEngineApiReferences.Containers]
  */
 @RestController
 @RequestMapping("containers")

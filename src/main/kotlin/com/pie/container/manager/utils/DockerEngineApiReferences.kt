@@ -1,4 +1,4 @@
-package com.pie.container.api.utils
+package com.pie.container.manager.utils
 
 private const val DOCKER_API_REF = "https://docs.docker.com/engine/api/1.43/"
 

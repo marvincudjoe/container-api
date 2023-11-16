@@ -1,8 +1,8 @@
-package com.pie.container.api.controllers
+package com.pie.container.manager.controllers
 
-import com.pie.container.api.model.DefaultResponse
-import com.pie.container.api.model.response
-import com.pie.container.api.service.SystemServiceImpl
+import com.pie.container.manager.model.DefaultResponse
+import com.pie.container.manager.model.response
+import com.pie.container.manager.service.SystemServiceImpl
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RestController
 
 /**
- * @see [com.pie.container.api.utils.DockerEngineApiReferences.System]
+ * @see [com.pie.container.manager.utils.DockerEngineApiReferences.System]
  */
 @RestController
 @RequestMapping("daemon")
