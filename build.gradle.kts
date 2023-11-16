@@ -1,4 +1,4 @@
-import org.gradle.api.JavaVersion.VERSION_20
+import org.gradle.api.JavaVersion.VERSION_17
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -10,7 +10,7 @@ plugins {
     kotlin("plugin.jpa") version "1.9.10"
 }
 
-val javaVersion = VERSION_20.majorVersion.toInt()
+val javaVersion = VERSION_17.majorVersion.toInt()
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(javaVersion)
@@ -55,7 +55,7 @@ tasks.withType<KotlinCompile> {
     kotlinOptions {
         // Enable strict null checks https://kotlinlang.org/docs/java-interop.html#jsr-305-support
         freeCompilerArgs += "-Xjsr305=strict"
-        jvmTarget = javaVersion.toString()
+        jvmTarget = VERSION_17.toString() // Move to 21 https://docs.gradle.org/current/userguide/compatibility.html#java
     }
 }
 

@@ -1,6 +1,7 @@
-FROM eclipse-temurin:20-jdk-alpine
+FROM eclipse-temurin:17-jdk-alpine
 LABEL com.pie.container.api.author="Marvin"
 
+# TODO: This should not be reliant on an existing jar file
 ARG JAR_FILE=./build/libs/container-api.jar
 ENV APP_HOME=/app
 WORKDIR $APP_HOME
