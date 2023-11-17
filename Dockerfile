@@ -1,12 +1,19 @@
-FROM eclipse-temurin:17-jdk-alpine
+# Use the official Gradle image as the base image
+FROM gradle:8.4-jdk17-alpine AS build
+
+WORKDIR /app
+
+COPY build.gradle.kts settings.gradle.kts ./
+
+COPY src ./src
+
+RUN gradle bootJar --no-daemon
+
+FROM bellsoft/liberica-runtime-container:jdk-17-slim-musl
 LABEL com.pie.container.manager.author="Marvin"
 
-# TODO: This should not be reliant on an existing jar file
-ARG JAR_FILE=./build/libs/container-api.jar
-ENV APP_HOME=/app
-WORKDIR $APP_HOME
+WORKDIR /app
 
-COPY $JAR_FILE $APP_HOME/app.jar
+COPY --from=build /app/build/libs/container-manager.jar ./
 
-EXPOSE 8080
-CMD ["java","-jar","app.jar"]
+CMD ["java", "-jar", "container-manager.jar"]

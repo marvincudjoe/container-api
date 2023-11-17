@@ -1,0 +1,9 @@
+name: container-manager
+services:
+  container-manager:
+    container_name: container-manager
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"

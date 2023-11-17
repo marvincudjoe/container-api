@@ -4,3 +4,7 @@ management:
       exposure:
         # https://docs.spring.io/spring-boot/docs/3.1.5/actuator-api/htmlsingle/#overview
         include: health,metrics
+
+springdoc:
+  api-docs:
+    path: /api-docs
