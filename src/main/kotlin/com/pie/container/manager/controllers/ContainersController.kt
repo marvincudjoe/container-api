@@ -1,11 +1,11 @@
 package com.pie.container.manager.controllers
 
+import com.fasterxml.jackson.databind.JsonNode
 import com.pie.container.manager.model.DefaultResponse
-import com.pie.container.manager.model.endpointNotImplemented
 import com.pie.container.manager.model.response
 import com.pie.container.manager.service.ContainersService
-import io.swagger.v3.oas.annotations.Hidden
 import io.swagger.v3.oas.annotations.Parameter
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
@@ -24,16 +24,15 @@ class ContainersController(private val containersService: ContainersService) {
         @RequestParam(required = false, defaultValue = "0") limit: Int,
         @Parameter(description = "Return the size of container as fields SizeRw and SizeRootFs.")
         @RequestParam(required = false, defaultValue = "false") size: Boolean,
-        @Parameter(description = "Filters to process on the container list, encoded as JSON (a map[string][]string).")
+        @Parameter(description = "Filters to process on the container list, encoded as JSON (a `map[string][]string`).")
         @RequestParam(required = false, defaultValue = "") filters: String,
     ): ResponseEntity<DefaultResponse> =
         response { containersService.listContainers(all, limit, size, filters) }
 
-    @Hidden
     @PostMapping("create")
-    fun createContainer(): ResponseEntity<String> {
-        return endpointNotImplemented
-    }
+    @ResponseStatus(HttpStatus.CREATED)
+    fun createContainer(@RequestBody jsonPayload: JsonNode): ResponseEntity<DefaultResponse> =
+        response { containersService.createContainer(jsonPayload) }
 
     @GetMapping("{id}/json")
     fun inspectContainer(
@@ -81,7 +80,7 @@ class ContainersController(private val containersService: ContainersService) {
 
     @PostMapping("prune")
     fun deleteStoppedContainers(
-        @Parameter(description = "Filters to process on the prune list, encoded as JSON (a map[string][]string).")
+        @Parameter(description = "Filters to process on the prune list, encoded as JSON (a `map[string][]string`).")
         @RequestParam(required = false, defaultValue = "") filters: String
     ): ResponseEntity<DefaultResponse> =
         response { containersService.deleteStoppedContainers(filters) }

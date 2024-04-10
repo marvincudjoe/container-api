@@ -4,8 +4,9 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import java.net.URI
 
-inline val endpointNotImplemented: ResponseEntity<String>
-    get() = ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body("Not Implemented")
+fun endpointNotImplemented(ref: String): DefaultResponse {
+    return (DefaultResponse(HttpStatus.NOT_IMPLEMENTED, URI(ref), (HttpStatus.NOT_IMPLEMENTED.reasonPhrase)))
+}
 
 inline fun response(block: () -> DefaultResponse): ResponseEntity<DefaultResponse> {
     val result = block()

@@ -1,6 +1,8 @@
 package com.pie.container.manager.service.impl
 
+import com.fasterxml.jackson.databind.JsonNode
 import com.pie.container.manager.model.DefaultResponse
+import com.pie.container.manager.model.endpointNotImplemented
 import com.pie.container.manager.service.ContainersService
 import com.pie.container.manager.utils.DockerEngineApiReferences
 import com.pie.container.manager.utils.setGetRequest
@@ -23,6 +25,10 @@ class ContainersServiceImpl : ContainersService {
             setGetRequest("containers/json?all=$all&limit=$limit&size=$size&filters=$filters"),
             DockerEngineApiReferences.Containers.LIST
         )
+    }
+
+    override fun createContainer(payload: JsonNode): DefaultResponse {
+        return endpointNotImplemented(DockerEngineApiReferences.Containers.CREATE)
     }
 
     override fun inspectContainer(id: String, size: Boolean): DefaultResponse {
