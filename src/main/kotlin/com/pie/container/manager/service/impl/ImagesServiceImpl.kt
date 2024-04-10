@@ -19,21 +19,17 @@ class ImagesServiceImpl : ImagesService {
         private const val PREFIX: String = "images"
     }
 
-    override fun listImages(all: Boolean, filters: String, sharedSize: Boolean, digests: Boolean): DefaultResponse {
-        return daemonService.sendRequest(
+    override fun listImages(all: Boolean, filters: String, sharedSize: Boolean, digests: Boolean): DefaultResponse =
+        daemonService.sendRequest(
             setGetRequest("$PREFIX/json?all=$all&filters=$filters&shared-size=$sharedSize&digests=$digests"),
             DockerEngineApiReferences.Images.LIST
         )
-    }
 
-    override fun createImage(payload: JsonNode): DefaultResponse {
-        return endpointNotImplemented(DockerEngineApiReferences.Images.CREATE)
-    }
+    override fun createImage(payload: JsonNode): DefaultResponse =
+        endpointNotImplemented(DockerEngineApiReferences.Images.CREATE)
 
-    override fun removeAnImage(name: String, force: Boolean, noprune: Boolean): DefaultResponse {
-        return daemonService.sendRequest(
-            setGetRequest("$PREFIX/$name?force=$force&noprune=$noprune"),
-            DockerEngineApiReferences.Images.DELETE
+    override fun removeAnImage(name: String, force: Boolean, noprune: Boolean): DefaultResponse =
+        daemonService.sendRequest(
+            setGetRequest("$PREFIX/$name?force=$force&noprune=$noprune"), DockerEngineApiReferences.Images.DELETE
         )
-    }
 }

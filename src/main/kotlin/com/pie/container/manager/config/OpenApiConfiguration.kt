@@ -11,11 +11,7 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 class OpenApiConfiguration {
     @Bean
-    fun openApi(): OpenAPI = OpenAPI()
-        .info(
-            Info()
-                .title("container-manager")
-                .description("Endpoints to manage containers")
-                .version("0.0.1")
-        )
+    fun openApi(): OpenAPI = OpenAPI().info(
+        Info().title("container-manager").description("Endpoints to manage containers").version("0.0.1")
+    )
 }

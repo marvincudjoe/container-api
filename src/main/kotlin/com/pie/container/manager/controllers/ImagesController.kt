@@ -9,6 +9,9 @@ import io.swagger.v3.oas.annotations.Parameter
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
+/**
+ * @see [com.pie.container.manager.utils.DockerEngineApiReferences.Images]
+ */
 @RestController
 @RequestMapping("images")
 class ImagesController(private val imagesService: ImagesService) {
@@ -31,12 +34,10 @@ class ImagesController(private val imagesService: ImagesService) {
 
     @DeleteMapping("{name}")
     fun removeAnImage(
-        @Parameter(description = "Image name or ID")
-        @PathVariable name: String,
+        @Parameter(description = "Image name or ID") @PathVariable name: String,
         @Parameter(description = "Remove the image even if it is being used by stopped containers or has other tags")
         @RequestParam(required = false, defaultValue = "false") force: Boolean,
         @Parameter(description = "Do not delete untagged parent images")
         @RequestParam(required = false, defaultValue = "false") noprune: Boolean
-    ): ResponseEntity<DefaultResponse> =
-        response { imagesService.removeAnImage(name, force, noprune) }
+    ): ResponseEntity<DefaultResponse> = response { imagesService.removeAnImage(name, force, noprune) }
 }

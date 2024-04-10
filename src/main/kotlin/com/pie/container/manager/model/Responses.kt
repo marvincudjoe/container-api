@@ -14,7 +14,5 @@ inline fun response(block: () -> DefaultResponse): ResponseEntity<DefaultRespons
 }
 
 data class DefaultResponse(
-    val status: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR,
-    val reference: URI = URI(""),
-    val body: Any = ""
+    val status: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR, val reference: URI = URI(""), val body: Any = ""
 )

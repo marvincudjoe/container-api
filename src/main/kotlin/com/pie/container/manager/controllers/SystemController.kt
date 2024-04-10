@@ -22,9 +22,5 @@ class SystemController(private val systemService: SystemService) {
     }
 
     @GetMapping("version")
-    fun daemonVersion(): ResponseEntity<DefaultResponse> {
-        return response {
-            systemService.version()
-        }
-    }
+    fun daemonVersion(): ResponseEntity<DefaultResponse> = response { systemService.version() }
 }

@@ -19,9 +19,7 @@ class DaemonServiceImpl {
 
     init {
         config = DefaultDockerClientConfig.createDefaultConfigBuilder().build()
-        httpClient = ApacheDockerHttpClient.Builder()
-            .dockerHost(config.dockerHost)
-            .build()
+        httpClient = ApacheDockerHttpClient.Builder().dockerHost(config.dockerHost).build()
     }
 
     fun sendRequest(req: DockerHttpClient.Request, reference: String): DefaultResponse {
@@ -38,14 +36,12 @@ class DaemonServiceImpl {
             response = if (ex is RuntimeException) {
                 logger.error("Caught ${ex.javaClass}: ${ex.stackTrace}")
                 DefaultResponse(
-                    HttpStatus.INTERNAL_SERVER_ERROR,
-                    body = "Caught RuntimeException: ${ex.message}"
+                    HttpStatus.INTERNAL_SERVER_ERROR, body = "Caught RuntimeException: ${ex.message}"
                 )
             } else {
                 logger.error("Caught ${ex.javaClass}: ${ex.stackTrace}")
                 DefaultResponse(
-                    HttpStatus.INTERNAL_SERVER_ERROR,
-                    body = "Failed to send request. \n${ex.message}"
+                    HttpStatus.INTERNAL_SERVER_ERROR, body = "Failed to send request. \n${ex.message}"
                 )
             }
         }
@@ -57,6 +53,7 @@ class DaemonServiceImpl {
         val body = try {
             response.body.toJson()
         } catch (ex: Exception) {
+            // TODO handle this exception
             ""
         }
         return DefaultResponse(status, dockerApiReference, body)

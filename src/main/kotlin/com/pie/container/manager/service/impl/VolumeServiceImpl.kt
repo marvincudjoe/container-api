@@ -13,29 +13,25 @@ class VolumeServiceImpl : VolumeService {
 
     override fun listVolumes(filters: String): DefaultResponse {
         return daemonService.sendRequest(
-            setGetRequest("volumes?filters=$filters"),
-            DockerEngineApiReferences.Volumes.LIST
+            setGetRequest("volumes?filters=$filters"), DockerEngineApiReferences.Volumes.LIST
         )
     }
 
     override fun inspectVolume(name: String): DefaultResponse {
         return daemonService.sendRequest(
-            setGetRequest("volumes/$name"),
-            DockerEngineApiReferences.Volumes.INSPECT
+            setGetRequest("volumes/$name"), DockerEngineApiReferences.Volumes.INSPECT
         )
     }
 
     override fun removeVolume(name: String, force: Boolean): DefaultResponse {
         return daemonService.sendRequest(
-            setGetRequest("volumes/$name"),
-            DockerEngineApiReferences.Volumes.DELETE
+            setGetRequest("volumes/$name"), DockerEngineApiReferences.Volumes.DELETE
         )
     }
 
     override fun deleteUnusedVolumes(filters: String): DefaultResponse {
         return daemonService.sendRequest(
-            setGetRequest("volumes/prune"),
-            DockerEngineApiReferences.Volumes.PRUNE
+            setGetRequest("volumes/prune"), DockerEngineApiReferences.Volumes.PRUNE
         )
     }
 }

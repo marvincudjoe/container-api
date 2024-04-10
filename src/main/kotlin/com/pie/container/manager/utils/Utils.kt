@@ -8,18 +8,17 @@ import org.slf4j.LoggerFactory
 import java.io.InputStream
 
 fun setGetRequest(path: String): DockerHttpClient.Request {
-    return DockerHttpClient.Request.builder().method(DockerHttpClient.Request.Method.GET)
-        .path("/$path").build()
+    return DockerHttpClient.Request.builder().method(DockerHttpClient.Request.Method.GET).path("/$path").build()
 }
 
 fun setPostRequest(path: String): DockerHttpClient.Request {
-    return DockerHttpClient.Request.builder().method(DockerHttpClient.Request.Method.POST)
-        .path("/$path").build()
+    return DockerHttpClient.Request.builder().method(DockerHttpClient.Request.Method.POST).path("/$path").build()
 }
 
 private fun InputStream.toText() = (this.bufferedReader().use { it.readText() })
 
 fun InputStream.toJson(): JsonNode = ObjectMapper().readTree(toText())
 
+// TODO investigate or replace with standard Slf4 jogger. This doesn't properly capture the class name
 inline val <reified T> T.logger: Logger
     get() = LoggerFactory.getLogger(T::class.java)
