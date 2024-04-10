@@ -6,7 +6,7 @@ import com.pie.container.manager.utils.setGetRequest
 import org.springframework.stereotype.Service
 
 @Service
-class VolumeServiceImpl: VolumeService {
+class VolumeServiceImpl : VolumeService {
 
     private var daemonService = DaemonServiceImpl()
 

@@ -2,7 +2,7 @@ package com.pie.container.manager.controllers
 
 import com.pie.container.manager.model.DefaultResponse
 import com.pie.container.manager.model.response
-import com.pie.container.manager.service.SystemServiceImpl
+import com.pie.container.manager.service.SystemService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController
  */
 @RestController
 @RequestMapping("daemon")
-class SystemController(private val systemService: SystemServiceImpl) {
+class SystemController(private val systemService: SystemService) {
 
     @RequestMapping(value = ["_ping"], method = [RequestMethod.HEAD])
     fun ping() {

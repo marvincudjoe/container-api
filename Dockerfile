@@ -1,5 +1,5 @@
 # Use the official Gradle image as the base image
-FROM gradle:8.4-jdk17-alpine AS build
+FROM gradle:8.7-jdk17-alpine AS build
 
 WORKDIR /app
 

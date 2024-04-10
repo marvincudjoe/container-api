@@ -35,14 +35,17 @@ gradlew.bat bootRun
 
 <details>
     <summary>Alternative: Docker</summary>
-        The docker container may not interact with the Docker Daemon as expected.
 
-        ```shell
-        docker compose up
-        ```
-      
+The docker container may not interact with the Docker Daemon as expected.
+```shell
+docker compose up
+```
+To clean up
+```shell
+docker compose down
+```
+
 </details>
-
 
 ### System Health Check
 Health Check to the Docker Engine:
