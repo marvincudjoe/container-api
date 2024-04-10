@@ -1,6 +1,7 @@
-package com.pie.container.manager.service
+package com.pie.container.manager.service.impl
 
 import com.pie.container.manager.model.DefaultResponse
+import com.pie.container.manager.service.ContainersService
 import com.pie.container.manager.utils.DockerEngineApiReferences
 import com.pie.container.manager.utils.setGetRequest
 import com.pie.container.manager.utils.setPostRequest

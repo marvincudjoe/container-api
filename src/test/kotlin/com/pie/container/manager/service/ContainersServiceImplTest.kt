@@ -2,6 +2,8 @@ package com.pie.container.manager.service
 
 import com.github.dockerjava.transport.DockerHttpClient
 import com.pie.container.manager.model.DefaultResponse
+import com.pie.container.manager.service.impl.ContainersServiceImpl
+import com.pie.container.manager.service.impl.DaemonServiceImpl
 import com.pie.container.manager.utils.DockerEngineApiReferences
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
