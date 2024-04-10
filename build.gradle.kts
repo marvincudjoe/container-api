@@ -24,15 +24,15 @@ repositories {
 
 object Versions {
     const val KOTLIN_VERSION = "1.9.10"
-    const val DOCKER_JAVA_VERSION = "3.3.3"
-    const val UNIREST_VERSION = "3.14.2"
-    const val SPRING_VERSION = "3.1.4"
-    const val SPRING_DOC_VERSION = "2.2.0"
+    const val GOOGLE_GUAVA = "33.0.0-jre"
+    const val DOCKER_JAVA_VERSION = "3.3.6"
+    const val SPRING_VERSION = "3.2.4"
+    const val SPRING_DOC_VERSION = "2.5.0"
 }
 
 dependencies {
     // This dependency is used by the application.
-    implementation("com.google.guava:guava:31.1-jre")
+    implementation("com.google.guava:guava:${Versions.GOOGLE_GUAVA}")
 
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:${Versions.SPRING_DOC_VERSION}")
     implementation("org.springdoc:springdoc-openapi-starter-common:${Versions.SPRING_DOC_VERSION}")
@@ -43,12 +43,8 @@ dependencies {
 
     implementation("org.springframework.boot:spring-boot-starter-actuator")
 
-    implementation("org.slf4j:slf4j-api:2.0.9")
-    implementation("ch.qos.logback:logback-classic:1.4.11")
-
     implementation("com.github.docker-java:docker-java:${Versions.DOCKER_JAVA_VERSION}")
     implementation("com.github.docker-java:docker-java-transport-httpclient5:${Versions.DOCKER_JAVA_VERSION}")
-    implementation("org.apache.httpcomponents.client5:httpclient5:5.2.1")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test:${Versions.SPRING_VERSION}")
 }
