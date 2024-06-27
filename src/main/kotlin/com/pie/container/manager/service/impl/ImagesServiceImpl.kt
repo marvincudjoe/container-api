@@ -11,13 +11,11 @@ import org.springframework.stereotype.Service
 /**
  * @see ImagesService
  */
+private const val PREFIX: String = "images"
+
 @Service
 class ImagesServiceImpl : ImagesService {
     private var daemonService = DaemonServiceImpl()
-
-    companion object {
-        private const val PREFIX: String = "images"
-    }
 
     override fun listImages(all: Boolean, filters: String, sharedSize: Boolean, digests: Boolean): DefaultResponse =
         daemonService.sendRequest(
@@ -30,6 +28,7 @@ class ImagesServiceImpl : ImagesService {
 
     override fun removeAnImage(name: String, force: Boolean, noprune: Boolean): DefaultResponse =
         daemonService.sendRequest(
-            setGetRequest("$PREFIX/$name?force=$force&noprune=$noprune"), DockerEngineApiReferences.Images.DELETE
+            setGetRequest("$PREFIX/$name?force=$force&noprune=$noprune"),
+            DockerEngineApiReferences.Images.DELETE
         )
 }

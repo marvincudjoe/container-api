@@ -1,7 +1,6 @@
 package com.pie.container.manager.controllers
 
 import com.fasterxml.jackson.databind.JsonNode
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.pie.container.manager.model.DefaultResponse
 import com.pie.container.manager.model.response
 import com.pie.container.manager.service.ImagesService
@@ -30,7 +29,7 @@ class ImagesController(private val imagesService: ImagesService) {
 
     @PostMapping
     fun createImage(@RequestBody payload: JsonNode): ResponseEntity<DefaultResponse> =
-        response { imagesService.createImage(ObjectMapper().createObjectNode()) }
+        response { imagesService.createImage(payload) }
 
     @DeleteMapping("{name}")
     fun removeAnImage(

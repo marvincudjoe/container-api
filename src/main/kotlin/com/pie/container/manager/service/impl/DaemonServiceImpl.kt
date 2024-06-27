@@ -8,9 +8,14 @@ import com.github.dockerjava.transport.DockerHttpClient.Response
 import com.pie.container.manager.model.DefaultResponse
 import com.pie.container.manager.utils.logger
 import com.pie.container.manager.utils.toJson
+import org.springframework.boot.json.JsonParseException
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 import java.net.URI
+import java.time.Duration
+
+private const val CONNECTION_TIMEOUT = 1000L // time to establish the connection with the docker daemon
+private const val RESPONSE_TIMEOUT = 6000L // time waiting for a response after connecting to the daemon
 
 @Service
 class DaemonServiceImpl {
@@ -19,13 +24,17 @@ class DaemonServiceImpl {
 
     init {
         config = DefaultDockerClientConfig.createDefaultConfigBuilder().build()
-        httpClient = ApacheDockerHttpClient.Builder().dockerHost(config.dockerHost).build()
+        httpClient =
+            ApacheDockerHttpClient.Builder()
+                .dockerHost(config.dockerHost)
+                .connectionTimeout(Duration.ofMillis(CONNECTION_TIMEOUT))
+                .responseTimeout(Duration.ofMillis(RESPONSE_TIMEOUT))
+                .build()
     }
 
     fun sendRequest(req: DockerHttpClient.Request, reference: String): DefaultResponse {
         var response = DefaultResponse()
         runCatching {
-            // todo: add timeout
             httpClient.execute(req).apply {
                 response = handelResponseStatus(this, URI(reference))
                 if (response.status.isError) {
@@ -33,13 +42,12 @@ class DaemonServiceImpl {
                 }
             }
         }.onFailure { ex ->
+            logger.error("Caught ${ex.javaClass} with reason: ${ex.message}")
             response = if (ex is RuntimeException) {
-                logger.error("Caught ${ex.javaClass}: ${ex.stackTrace}")
                 DefaultResponse(
-                    HttpStatus.INTERNAL_SERVER_ERROR, body = "Caught RuntimeException: ${ex.message}"
+                    HttpStatus.INTERNAL_SERVER_ERROR, body = "RuntimeException: ${ex.message}"
                 )
             } else {
-                logger.error("Caught ${ex.javaClass}: ${ex.stackTrace}")
                 DefaultResponse(
                     HttpStatus.INTERNAL_SERVER_ERROR, body = "Failed to send request. \n${ex.message}"
                 )
@@ -52,9 +60,8 @@ class DaemonServiceImpl {
         val status = HttpStatus.valueOf(response.statusCode)
         val body = try {
             response.body.toJson()
-        } catch (ex: Exception) {
-            // TODO handle this exception
-            ""
+        } catch (_: JsonParseException) {
+            logger.error("Unable to parse response: ${response.body}")
         }
         return DefaultResponse(status, dockerApiReference, body)
     }
