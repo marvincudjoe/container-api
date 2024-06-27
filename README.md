@@ -16,7 +16,7 @@
 <!-- TOC -->
 
 ## Pre-requisites
-- [JDK 17](https://adoptium.net/en-GB/temurin/releases/)
+- [JDK 21](https://adoptium.net/en-GB/temurin/releases/)
 - [Docker](https://docs.docker.com/get-docker/)
 
 ## Running the application
@@ -81,12 +81,11 @@ This project uses an unofficial SDK, [docker-java](https://github.com/docker-jav
 to interact with the Docker Engine API.
 
 ### Limitations
-1. This project depends on an unofficial
-   sdk, [docker-java](https://github.com/docker-java/docker-java),
-   which looks to be actively supported but not actively maintained
-2. Some may see this application as a way to create on demand containers.
-   - This is not the intended purpose.
-   - This application must not be used as is. Better solutions exist.
-     See [Testcontainers](https://testcontainers.com/) and [ContainerSSH](https://containerssh.io/).
-3. This is a work in progress to implement what I learn.
-    - I *may* add updates as I progress in studying Kotlin and other development practices.
+This project depends on an unofficial sdk, [docker-java](https://github.com/docker-java/docker-java), 
+which looks to be actively supported but not actively maintained
+
+Some may see this application as a way to create on demand containers. This is not the intended purpose. 
+This application must not be used as it is. Better solutions exist. See [Testcontainers](https://testcontainers.com/) and [ContainerSSH](https://containerssh.io/).
+
+This is a work in progress to implement what I learn.
+I *may* add updates as I progress in studying Kotlin and other development practices.

@@ -1,4 +1,5 @@
-import org.gradle.api.JavaVersion.VERSION_17
+import org.gradle.api.JavaVersion.VERSION_21
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -10,10 +11,10 @@ plugins {
     kotlin("plugin.jpa") version "2.0.0"
 }
 
-val javaVersion = VERSION_17.majorVersion.toInt()
+val javaVersion = VERSION_21.majorVersion
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(javaVersion)
+        languageVersion.set(JavaLanguageVersion.of(javaVersion))
     }
 }
 
@@ -50,14 +51,12 @@ dependencies {
 }
 
 tasks.withType<KotlinCompile> {
-    kotlinOptions {
+    compilerOptions {
         // Enable strict null checks https://kotlinlang.org/docs/java-interop.html#jsr-305-support
-        freeCompilerArgs += "-Xjsr305=strict"
-        jvmTarget =
-            VERSION_17.toString() // Move to 21 https://docs.gradle.org/current/userguide/compatibility.html#java
+        freeCompilerArgs.add("-Xjsr305=strict")
+        jvmTarget.set(JVM_21)
     }
 }
-
 tasks.test {
     useJUnitPlatform()
 }
