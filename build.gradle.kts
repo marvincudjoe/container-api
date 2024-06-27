@@ -2,12 +2,12 @@ import org.gradle.api.JavaVersion.VERSION_17
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "3.1.4"
-    id("io.spring.dependency-management") version "1.1.3"
-    id("org.jetbrains.kotlin.jvm") version "1.9.23"
+    id("org.springframework.boot") version "3.3.1"
+    id("io.spring.dependency-management") version "1.1.5"
+    id("org.jetbrains.kotlin.jvm") version "2.0.0"
     id("org.jetbrains.dokka") version "1.9.10"
-    kotlin("plugin.spring") version "1.9.10"
-    kotlin("plugin.jpa") version "1.9.10"
+    kotlin("plugin.spring") version "2.0.0"
+    kotlin("plugin.jpa") version "2.0.0"
 }
 
 val javaVersion = VERSION_17.majorVersion.toInt()
@@ -23,10 +23,10 @@ repositories {
 }
 
 object Versions {
-    const val KOTLIN_VERSION = "1.9.10"
+    const val KOTLIN_VERSION = "2.0.0"
     const val GOOGLE_GUAVA = "33.0.0-jre"
     const val DOCKER_JAVA_VERSION = "3.3.6"
-    const val SPRING_VERSION = "3.2.4"
+    const val SPRING_VERSION = "3.3.1"
     const val SPRING_DOC_VERSION = "2.5.0"
 }
 
